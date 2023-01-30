@@ -1,4 +1,4 @@
-package com.practice.rest.webservices.restfulwebservices.SocialMedia;
+package com.practice.rest.webservices.restfulwebservices.service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import org.springframework.stereotype.Component;
+
+import com.practice.rest.webservices.restfulwebservices.entity.User;
 
 
 @Component
