@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -121,6 +122,18 @@ public class UserJpaResource {
 				.toUri();
 		
 		return ResponseEntity.created(location).build();
+	}
+	
+	//http://localhost:8080/jpa/users/id?id=1001
+	@GetMapping("/users/id")
+	public User getUserByID(@RequestParam(value = "id") int id) {
+	Optional<User> user = userRepository.findById(id);
+//	if(user.isEmpty())
+//		throw new UserNotFoundException("User with ID "+id+" doesnot exists");
+//	else
+		
+		return user.get();
+		
 	}
 	
 }
