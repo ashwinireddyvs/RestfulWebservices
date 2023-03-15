@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 
@@ -42,6 +43,9 @@ public class UserJpaResource {
 	 * userDAOService) { this.userDAOService=userDAOService; }
 	 */
 	
+	@Value("${profile}")
+	String profile;
+	
 	@Autowired
 	private UserRepository userRepository;
 	
@@ -51,6 +55,7 @@ public class UserJpaResource {
 	
 	@GetMapping("/users")
 	public List<User> retrieveAllUsers(){
+		System.out.println("profile========>"+profile);
 		return userRepository.findAll();
 	}
 	
@@ -88,6 +93,8 @@ public class UserJpaResource {
 				.toUri();
 		
 		return ResponseEntity.created(location).build();
+		
+		
 	}
 	
 	@DeleteMapping("/users/{id}")
